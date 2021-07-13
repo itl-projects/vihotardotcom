@@ -63,27 +63,27 @@
                                 </li>
                             </ul>
                             <div class="position-relative px-3 u-header__login-form dropdown-connector-xl u-header__topbar-divider">
-                                <a id="signUpDropdownInvoker"  href="javascript:;" class="d-flex align-items-center text-white py-3" aria-controls="signUpDropdown" aria-haspopup="true" aria-expanded="true" data-unfold-event="click" data-unfold-target="#signUpDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
+                                <a id="signUpDropdownInvoker"  href="javascript:;" class="d-flex align-items-center text-white py-3" aria-controls="signUpDropdown" aria-haspopup="true" aria-expanded="true" data-unfold-event="click" data-unfold-target="#signUpDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="false" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
                                     <i class="flaticon-user mr-2 ml-1 font-size-18"></i>
                                     <span class="d-inline-block font-size-14 mr-1">Sign in or Register</span>
                                 </a>
                                 <div id="signUpDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right py-0 mt-0" aria-labelledby="signUpDropdownInvoker" style="min-width: 500px;">
                                     <div class="card rounded-xs">
-                                        <form class="js-validate" novalidate="novalidate" method="post">
-                                            <!-- Login -->
-                                            <div id="login" style="opacity: 1;" data-target-group="idForm" class="animated fadeIn">
-                                                <!-- Header -->
-                                                <div class="card-header text-center">
-                                                    <h3 class="h5 mb-0 font-weight-semi-bold">Login</h3>
-                                                </div>
-                                                <!-- End Header -->
-                                                <div class="card-body pt-6 pb-4">
-                                                    <!-- Form Group -->
+                                        <!-- Login -->
+                                        <div id="login" style="opacity: 1;" data-target-group="idForm" class="animated fadeIn">
+                                            <!-- Header -->
+                                            <div class="card-header text-center">
+                                                <h3 class="h5 mb-0 font-weight-semi-bold">Login</h3>
+                                            </div>
+                                            <!-- End Header -->
+                                            <div class="card-body pt-6 pb-4">
+                                                <!-- Form Group -->
+                                                <form id="login-form">
                                                     <div class="form-group pb-1">
                                                         <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
                                                             <label class="sr-only" for="signinSrEmail">Email</label>
                                                             <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="email" class="form-control" name="email" id="signinSrEmail" placeholder="Email Or Username" aria-label="Email Or Username" aria-describedby="signinEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <input type="email" class="form-control" name="email" id="signinSrEmail" placeholder="Email Or Username" aria-label="Email Or Username" aria-describedby="signinEmail" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success" required>
                                                                 <div class="input-group-append">
                                                                     <span class="input-group-text" id="signinEmail">
                                                                         <span class="far fa-envelope font-size-20"></span>
@@ -98,7 +98,7 @@
                                                         <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
                                                             <label class="sr-only" for="signinSrPassword">Password</label>
                                                             <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="password" class="form-control" name="password" id="signinSrPassword" placeholder="Password" aria-label="Password" aria-describedby="signinPassword" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <input type="password" class="form-control" name="password" id="signinSrPassword" placeholder="Password" aria-label="Password" aria-describedby="signinPassword" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success" required>
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="signinPassword">
                                                                         <span class="flaticon-password font-size-20"></span>
@@ -108,8 +108,24 @@
                                                         </div>
                                                     </div>
                                                     <!-- End Form Group -->
+                                                    <!-- Form Group -->
+                                                    <div class="form-group pb-1">
+                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
+                                                            <label class="sr-only" for="signinSrType">Select Type</label>
+                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
+                                                                <select name="user-type" id="signinSrType" class="form-control" aria-label="User Type" required>
+                                                                    <option value="buyer">Buyer</option>
+                                                                    <option value="seller">Seller</option>
+                                                                    <option value="agent">Agent</option>
+                                                                    <option value="admin">Admin</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Form Group -->
                                                     <div class="mb-3 pb-1">
-                                                        <button type="submit" class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Login</button>
+                                                        <p id="buyer-login-error" class="text-danger text-center"></p>
+                                                        <button type="submit" id="buyer-login" class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Login</button>
                                                     </div>
                                                     <div class="d-flex justify-content-between mb-1">
                                                         <div class="custom-control custom-checkbox custom-control-inline">
@@ -118,32 +134,34 @@
                                                         </div>
                                                         <a class="js-animation-link text-primary font-size-14" href="javascript:;" data-target="#forgotPassword" data-link-group="idForm" data-animation-in="fadeIn"><u>Forgot Password?</u></a>
                                                     </div>
+                                                </form>
+                                            </div>
+                                            <div class="card-footer p-0">
+                                                <div class="card-footer__top border-bottom border-color-8 py-3">
+                                                    <div class="text-center mt-2 mb-4 pb-1">
+                                                        <span class="d-block text-gray-1 fontsize-14">or continue with</span>
+                                                    </div>
+                                                    <div class="d-flex mb-3">
+                                                        <a class="btn btn-block btn-sm btn-facebook transition-3d-hover" href="#">
+                                                            <span class="fab fa-facebook-f mr-2"></span>
+                                                            Facebook
+                                                        </a>
+                                                        <a class="btn btn-block btn-sm btn-twitter transition-3d-hover ml-5 mt-0" href="#">
+                                                            <span class="fab fa-twitter mr-2"></span>
+                                                            Twitter
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                                <div class="card-footer p-0">
-                                                    <div class="card-footer__top border-bottom border-color-8 py-3">
-                                                        <div class="text-center mt-2 mb-4 pb-1">
-                                                            <span class="d-block text-gray-1 fontsize-14">or continue with</span>
-                                                        </div>
-                                                        <div class="d-flex mb-3">
-                                                            <a class="btn btn-block btn-sm btn-facebook transition-3d-hover" href="#">
-                                                                <span class="fab fa-facebook-f mr-2"></span>
-                                                                Facebook
-                                                            </a>
-                                                            <a class="btn btn-block btn-sm btn-twitter transition-3d-hover ml-5 mt-0" href="#">
-                                                                <span class="fab fa-twitter mr-2"></span>
-                                                                Twitter
-                                                            </a>
-                                                        </div>
-                                                    </div>
 
-                                                    <div class="card-footer__bottom p-4 text-center font-size-14">
-                                                        <span class="text-gray-1">Do not have an account?</span>
-                                                        <a class="js-animation-link font-weight-bold" href="javascript:;" data-target="#signup" data-link-group="idForm" data-animation-in="fadeIn">Sign Up</a>
-                                                    </div>
+                                                <div class="card-footer__bottom p-4 text-center font-size-14">
+                                                    <span class="text-gray-1">Do not have an account?</span>
+                                                    <a class="js-animation-link font-weight-bold" href="javascript:;" data-target="#signup" data-link-group="idForm" data-animation-in="fadeIn">Sign Up</a>
                                                 </div>
                                             </div>
-                                            <!-- End Login -->
+                                        </div>
+                                        <!-- End Login -->
 
+                                        <form class="js-validate" method="post" id="buyer-signup-form">
                                             <!-- Signup -->
                                             <div id="signup" style="opacity: 0; display: none;" data-target-group="idForm">
                                                 <!-- Header -->
@@ -152,180 +170,97 @@
                                                 </div>
                                                 <!-- End Header -->
                                                 <div class="card-body pt-5 pb-4">
-                                                    <ul class="nav nav-default nav-pills nav-white nav-justified nav-rounded-pill font-weight-medium px-6 pb-5" role="tablist">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link active" id="pills-one-code-sample-tab" data-toggle="pill" href="#pills-one-code-sample" role="tab" aria-controls="pills-one-code-sample" aria-selected="true">Normal User</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" id="pills-two-code-sample-tab" data-toggle="pill" href="#pills-two-code-sample" role="tab" aria-controls="pills-two-code-sample" aria-selected="false">Partner User</a>
-                                                        </li>
-                                                    </ul>
 
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane fade active show" id="pills-one-code-sample" role="tabpanel" aria-labelledby="pills-one-code-sample-tab">
-                                                            <!-- Form Group -->
-                                                            <div class="form-group pb-1">
-                                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                                    <label class="sr-only" for="uname">User Name</label>
-                                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                        <input type="text" class="form-control" name="uname" id="uname" placeholder="User Name" aria-label="User Name" aria-describedby="username" required="" data-msg="Please enter a valid user name." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                        <div class="input-group-append">
-                                                                            <span class="input-group-text" id="username">
-                                                                                <span class="flaticon-user font-size-20"></span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- End Form Group -->
-
-                                                            <!-- Form Group -->
-                                                            <div class="form-group pb-1">
-                                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                                    <label class="sr-only" for="name">Full Name</label>
-                                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                        <input type="text" class="form-control" name="name" id="name" placeholder="Full Name" aria-label="Full Name" aria-describedby="normalname" required="" data-msg="Please enter a valid name." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                        <div class="input-group-append">
-                                                                            <span class="input-group-text" id="normalname">
-                                                                                <span class="flaticon-browser-1 font-size-20"></span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- End Form Group -->
-
-                                                            <!-- Form Group -->
-                                                            <div class="form-group pb-1">
-                                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                                    <label class="sr-only" for="signupSrEmail">Email</label>
-                                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                        <input type="email" class="form-control" name="email" id="signupSrEmail" placeholder="Email" aria-label="Email" aria-describedby="signupEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                        <div class="input-group-append">
-                                                                            <span class="input-group-text" id="signupEmail">
-                                                                                <span class="far fa-envelope font-size-20"></span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- End Form Group -->
-
-                                                            <!-- Form Group -->
-                                                            <div class="form-group pb-1">
-                                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                                    <label class="sr-only" for="signupSrPassword">Password</label>
-                                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                        <input type="password" class="form-control" name="password" id="signupSrPassword" placeholder="Password" aria-label="Password" aria-describedby="signupPassword" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="signupPassword">
-                                                                                <span class="flaticon-password font-size-20"></span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- End Form Group -->
-                                                            <div class="mb-3 pb-1">
-                                                                <button type="submit" class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Register</button>
-                                                            </div>
-                                                            <div class="d-flex justify-content-between mb-1">
-                                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                                    <input type="checkbox" id="customCheckboxInline2" name="customCheckboxInline2" class="custom-control-input">
-                                                                    <label class="custom-control-label" for="customCheckboxInline2">I have read and accept the <a href="#">Terms and Privacy Policy</a></label>
+                                                    <!-- Form Group -->
+                                                    <div class="form-group pb-1">
+                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
+                                                            <label class="sr-only" for="first-name">First Name</label>
+                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
+                                                                <input type="text" class="form-control" name="first-name" id="first-name" placeholder="First Name" aria-label="First Name" aria-describedby="firstname" required="" data-msg="Please enter a valid first name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text" id="firstname">
+                                                                        <span class="flaticon-user font-size-20"></span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="tab-pane fade" id="pills-two-code-sample" role="tabpanel" aria-labelledby="pills-two-code-sample-tab">
-                                                            <!-- Form Group -->
-                                                            <div class="form-group pb-1">
-                                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                                    <label class="sr-only" for="puname">User Name</label>
-                                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                        <input type="text" class="form-control" name="puname" id="puname" placeholder="User Name" aria-label="User Name" aria-describedby="partnerusername" required="" data-msg="Please enter a valid user name." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                        <div class="input-group-append">
-                                                                            <span class="input-group-text" id="partnerusername">
-                                                                                <span class="flaticon-user font-size-20"></span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- End Form Group -->
+                                                    </div>
+                                                    <!-- End Form Group -->
 
-                                                            <!-- Form Group -->
-                                                            <div class="form-group pb-1">
-                                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                                    <label class="sr-only" for="pname">Full Name</label>
-                                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                        <input type="text" class="form-control" name="pname" id="pname" placeholder="Full Name" aria-label="Full Name" aria-describedby="partnername" required="" data-msg="Please enter a valid name." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                        <div class="input-group-append">
-                                                                            <span class="input-group-text" id="partnername">
-                                                                                <span class="flaticon-browser-1 font-size-20"></span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
+                                                    <!-- Form Group -->
+                                                    <div class="form-group pb-1">
+                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
+                                                            <label class="sr-only" for="last-name">Last Name</label>
+                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
+                                                                <input type="text" class="form-control" name="last-name" id="last-name" placeholder="Last Name" aria-label="Last Name" aria-describedby="normalname" required="" data-msg="Please enter a valid last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text" id="normalname">
+                                                                        <span class="flaticon-browser-1 font-size-20"></span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
-                                                            <!-- End Form Group -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Form Group -->
 
-                                                            <!-- Form Group -->
-                                                            <div class="form-group pb-1">
-                                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                                    <label class="sr-only" for="signupPartnerSrEmail">Email</label>
-                                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                        <input type="email" class="form-control" name="pemail" id="signupPartnerSrEmail" placeholder="Email" aria-label="Email" aria-describedby="signupPartnerEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                        <div class="input-group-append">
-                                                                            <span class="input-group-text" id="signupPartnerEmail">
-                                                                                <span class="far fa-envelope font-size-20"></span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
+                                                    <!-- Form Group -->
+                                                    <div class="form-group pb-1">
+                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
+                                                            <label class="sr-only" for="signupSrEmail">Email</label>
+                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
+                                                                <input type="email" class="form-control" name="email" id="signupSrEmail" placeholder="Email" aria-label="Email" aria-describedby="signupEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text" id="signupEmail">
+                                                                        <span class="far fa-envelope font-size-20"></span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
-                                                            <!-- End Form Group -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Form Group -->
 
-                                                            <!-- Form Group -->
-                                                            <div class="form-group pb-1">
-                                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                                    <label class="sr-only" for="signupPartnerSrPassword">Password</label>
-                                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                        <input type="password" class="form-control" name="Partnerpassword" id="signupPartnerSrPassword" placeholder="Password" aria-label="PartnerPassword" aria-describedby="signupPartnerPassword" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="signupPartnerPassword">
-                                                                                <span class="flaticon-password font-size-20"></span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
+                                                    <!-- Form Group -->
+                                                    <div class="form-group pb-1">
+                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
+                                                            <label class="sr-only" for="signupSrPassword">Password</label>
+                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
+                                                                <input type="password" class="form-control" name="password" id="signupSrPassword" placeholder="Password" aria-label="Password" aria-describedby="signupPassword" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text" id="signupPassword">
+                                                                        <span class="flaticon-password font-size-20"></span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
-                                                            <!-- End Form Group -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Form Group -->
 
-                                                            <!-- Form Group -->
-                                                            <div class="form-group pb-1">
-                                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                                    <label class="sr-only" for="signupPartnerSrConfirmPassword">Confirm Password</label>
-                                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                        <input type="password" class="form-control" name="confirmpartnerpassword" id="signupPartnerSrConfirmPassword" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="signupPartnerConfirmPassword" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="signupPartnerConfirmPassword">
-                                                                                <span class="fas fa-key font-size-20"></span>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
+                                                    <!-- Form Group -->
+                                                    <div class="form-group pb-1">
+                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
+                                                            <label class="sr-only" for="signupSrPassword">Confirm Password</label>
+                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
+                                                                <input type="password" class="form-control" name="password2" id="signupSrPassword2" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="signupPassword" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text" id="signupPassword">
+                                                                        <span class="flaticon-password font-size-20"></span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
-                                                            <!-- End Form Group -->
-
-                                                            <div class="mb-3 pb-1">
-                                                                <button type="submit" class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Register</button>
-                                                            </div>
-                                                            <div class="d-flex justify-content-between mb-1">
-                                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                                    <input type="checkbox" id="customCheckboxInline3" name="customCheckboxInline3" class="custom-control-input">
-                                                                    <label class="custom-control-label" for="customCheckboxInline3">I have read and accept the <a href="#">Terms and Privacy Policy</a></label>
-                                                                </div>
-                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Form Group -->
+                                                    <div id="signup-success" class="alert alert-success" role="alert" style="display: none;">
+                                                        Successful Signup. Please verify your email to login.
+                                                    </div>
+                                                    <div class="mb-3 pb-1">
+                                                        <p id="buyer-signup-error" class="text-danger text-center"></p>
+                                                        <button id="signup-btn" type="submit" class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Register</button>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between mb-1">
+                                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                                            <input type="checkbox" id="customCheckboxInline2" name="customCheckboxInline2" class="custom-control-input">
+                                                            <label class="custom-control-label" for="customCheckboxInline2">I have read and accept the <a href="#">Terms and Privacy Policy</a></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -353,41 +288,41 @@
                                                 </div>
                                             </div>
                                             <!-- End Signup -->
+                                        </form>
 
-                                            <!-- Forgot Passwrd -->
-                                            <div id="forgotPassword" style="opacity: 0; display: none;" data-target-group="idForm">
-                                                <!-- Header -->
-                                                <div class="card-header bg-light text-center py-3 px-5">
-                                                    <h3 class="h6 mb-0 font-weight-semi-bold">Recover password</h3>
-                                                </div>
-                                                <!-- End Header -->
-                                                <div class="card-body px-10 py-5">
-                                                    <!-- Form Group -->
-                                                    <div class="form-group">
-                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                            <label class="sr-only" for="recoverSrEmail">Your email</label>
-                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="email" class="form-control" name="email" id="recoverSrEmail" placeholder="Your email" aria-label="Your email" aria-describedby="recoverEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text" id="recoverEmail">
-                                                                        <span class="far fa-envelope font-size-20"></span>
-                                                                    </span>
-                                                                </div>
+                                        <!-- Forgot Passwrd -->
+                                        <div id="forgotPassword" style="opacity: 0; display: none;" data-target-group="idForm">
+                                            <!-- Header -->
+                                            <div class="card-header bg-light text-center py-3 px-5">
+                                                <h3 class="h6 mb-0 font-weight-semi-bold">Recover password</h3>
+                                            </div>
+                                            <!-- End Header -->
+                                            <div class="card-body px-10 py-5">
+                                                <!-- Form Group -->
+                                                <div class="form-group">
+                                                    <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
+                                                        <label class="sr-only" for="recoverSrEmail">Your email</label>
+                                                        <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
+                                                            <input type="email" class="form-control" name="email" id="recoverSrEmail" placeholder="Your email" aria-label="Your email" aria-describedby="recoverEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="recoverEmail">
+                                                                    <span class="far fa-envelope font-size-20"></span>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- End Form Group -->
-                                                    <div class="mb-2">
-                                                        <button type="submit" class="btn btn-sm btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Recover Password</button>
-                                                    </div>
-                                                    <div class="text-center font-size-14">
-                                                        <span class="text-gray-1">Remember your password?</span>
-                                                        <a class="js-animation-link font-weight-bold" href="javascript:;" data-target="#login" data-link-group="idForm" data-animation-in="fadeIn">Log In</a>
-                                                    </div>
+                                                </div>
+                                                <!-- End Form Group -->
+                                                <div class="mb-2">
+                                                    <button type="submit" class="btn btn-sm btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Recover Password</button>
+                                                </div>
+                                                <div class="text-center font-size-14">
+                                                    <span class="text-gray-1">Remember your password?</span>
+                                                    <a class="js-animation-link font-weight-bold" href="javascript:;" data-target="#login" data-link-group="idForm" data-animation-in="fadeIn">Log In</a>
                                                 </div>
                                             </div>
-                                            <!-- End Forgot Passwrd -->
-                                        </form>
+                                        </div>
+                                        <!-- End Forgot Passwrd -->
                                     </div>
                                 </div>
                             </div>
@@ -631,7 +566,7 @@
                                         <div class="row">
                                             <div class="col-12 col-xl-4">
                                                 <ul class="u-header__sub-menu-nav-group u-header__sub-menu-bordered mb-3">
-                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../others/destination.html">Destination</a></li>
+                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="./destination.html">Destination</a></li>
                                                     <li><a class="nav-link u-header__sub-menu-nav-link" href="../others/about.html">About us</a></li>
                                                     <li><a class="nav-link u-header__sub-menu-nav-link" href="../others/contact.html">Contact</a></li>
                                                     <li><a class="nav-link u-header__sub-menu-nav-link" href="../others/terms-conditions.html">Terms of Use</a></li>
@@ -4429,11 +4364,11 @@
                         <div class="bootstrap-select__custom col-xl-8 d-block d-lg-flex justify-content-xl-end align-items-center">
                             <div class="mb-4 mb-lg-0">
                                 <ul class="d-flex list-unstyled mb-0">
-                                    <li class="mr-2 ml-0"><img class="max-width-40" src="../../assets/img/icons/img3.png" alt="Payment Icons"></li>
-                                    <li class="mx-2"><img class="max-width-40" src="../../assets/img/icons/img4.png" alt="Payment Icons"></li>
-                                    <li class="mx-2"><img class="max-width-40" src="../../assets/img/icons/img5.png" alt="Payment Icons"></li>
-                                    <li class="mx-2"><img class="max-width-40" src="../../assets/img/icons/img6.png" alt="Payment Icons"></li>
-                                    <li class="ml-2 mr--0"><img class="max-width-40" src="../../assets/img/icons/img7.png" alt="Payment Icons"></li>
+                                    <li class="mr-2 ml-0"><img class="max-width-40" src="./assets/img/icons/img3.png" alt="Payment Icons"></li>
+                                    <li class="mx-2"><img class="max-width-40" src="./assets/img/icons/img4.png" alt="Payment Icons"></li>
+                                    <li class="mx-2"><img class="max-width-40" src="./assets/img/icons/img5.png" alt="Payment Icons"></li>
+                                    <li class="mx-2"><img class="max-width-40" src="./assets/img/icons/img6.png" alt="Payment Icons"></li>
+                                    <li class="ml-2 mr--0"><img class="max-width-40" src="./assets/img/icons/img7.png" alt="Payment Icons"></li>
                                 </ul>
                             </div>
                             <select class="js-select selectpicker dropdown-select min-width-256 w-100 w-md-auto border-radius-3 mb-3 mb-md-0 mr-md-5"
@@ -4567,5 +4502,7 @@
                 $.HSCore.components.HSGoTo.init('.js-go-to');
             });
         </script>
+
+        <script src="scripts/login.js"></script>
     </body>
 </html>
