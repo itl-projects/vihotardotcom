@@ -1,6 +1,6 @@
 $(window).on('load', function() {
 
-    var backendUrl = 'http://127.0.0.1:8000'
+    var backendUrl = 'https://api.vihotar.com'
 
     var accessToken = localStorage.getItem('access_token');
     if (accessToken) {

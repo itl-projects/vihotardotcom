@@ -1,7 +1,7 @@
 
 $(window).on('load', function() {
 
-    var backendUrl = 'http://127.0.0.1:8000'
+    var backendUrl = 'https://api.vihotar.com'
 
     function userLogin(data) {
         localStorage.setItem('refresh_token', data.token.refresh);
