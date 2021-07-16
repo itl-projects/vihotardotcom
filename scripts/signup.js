@@ -1,19 +1,21 @@
 $(window).on('load', function() {
 
-    $('#buyer-signup-form').on('submit', function(e) {
+    $('#SignUpForm').on('submit', function(e) {
         e.preventDefault();
 
-        $('#signup-success').hide();
-        $('#signup-btn').prop('disabled', true);
+        $('#successDiv').hide();
+        $('#btnFetch').html('<i class="fa fa-spinner fa-spin"></i> loading...');
 
-        let first_name = $('#first-name').val();
-        let last_name = $('#last-name').val();
-        let email = $('#signupSrEmail').val();
-        let password1 = $('#signupSrPassword').val();
-        let password2 = $('#signupSrPassword2').val();
+        let first_name = $('#loginFirstname').val();
+        let last_name = $('#loginLastname').val();
+        let email = $('#loginUsername').val();
+        let password1 = $('#loginPassword').val();
+        let password2 = $('#loginPassword2').val();
 
         if (password1 != password2) {
-            $('#buyer-signup-error').text("Passwords did not match. Try again");
+            $('#btnFetch').html('Sign up');
+            $('#error-text').text("Passwords did not match. Try again");
+            $('#errorDiv').show();
             return;
         }
 
@@ -26,17 +28,18 @@ $(window).on('load', function() {
                 'password': password1
             },
             function(data, status) {
-                $('#signup-btn').prop('disabled', false);
-                console.log(data);
+                $('#btnFetch').html('Sign up');
                 if (data.status) {
-                    $('#buyer-signup-error').text('');
-                    $('#buyer-signup-form').trigger('reset');
-                    $('#signup-success').show()
+                    $('#errorDiv').hide();
+                    $('#signUpForm').trigger('reset');
+                    $('#successDiv').show();
                 } else {
                     if (data['errors']['email'] != undefined) {
-                        $('#buyer-signup-error').text(data['errors']['email']);
+                        $('#error-text').text(data['errors']['email']);
+                        $('#errorDiv').show();
                     } else {
-                        $('#buyer-signup-error').text('Error! Please try again')
+                        $('#error-text').text('Error! Please try again');
+                        $('#errorDiv').show();
                     }
                 }
             }
@@ -76,7 +79,6 @@ $(window).on('load', function() {
                 'password': password1
             },
             function(data, status) {
-                console.log(data);
                 $('#btnFetch').html('Sign up');
                 if (data.status) {
                     $('#errorDiv').hide();
@@ -128,7 +130,6 @@ $(window).on('load', function() {
                 'password': password1
             },
             function(data, status) {
-                console.log(data);
                 $('#btnFetch').html('Sign up');
                 if (data.status) {
                     $('#errorDiv').hide();

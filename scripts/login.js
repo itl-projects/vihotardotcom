@@ -1,38 +1,42 @@
 
 $(window).on('load', function() {
 
-    var accessToken = localStorage.getItem('access_token');
-    if (accessToken) {
-        $('#signUpDropdownInvoker').attr('style', 'display: none !important;');
-    }
+    var backendUrl = 'http://127.0.0.1:8000'
 
     function userLogin(data) {
         localStorage.setItem('refresh_token', data.token.refresh);
         localStorage.setItem('access_token', data.token.access);
     }
 
-    $('#login-form').submit(function(e) {
+    $('#login-form').on('submit', function(e) {
         e.preventDefault();
-        let username = $('#signinSrEmail').val();
-        let password = $('#signinSrPassword').val();
-        let user_type = $('#signinSrType').val();
+        let username = $('#loginUsername').val();
+        let password = $('#loginPassword').val();
+        let user_type = $('#loginUserType').val();
 
-        $('#buyer-login').prop('disabled', true);
+        $('#successDiv').hide();
+        $('#btnFetch').html('<i class="fa fa-spinner fa-spin"></i> loading...');
 
         $.post(
-            'https://api.vihotar.com/api/users/login/',
+            backendUrl + '/api/users/login/',
             {
                 'email': username,
                 'password': password,
                 'type': user_type
             },
             function(data, status) {
-                $('#buyer-login').prop('disabled', false);
+                $('#btnFetch').html('Sign in');
                 if (data.status) {
+                    $('#errorDiv').hide();
+                    $('#login-form').trigger('reset');
+                    $('#successDiv').show();
                     userLogin(data);
-                    window.location.href = window.location.href;
+                    window.setTimeout(function() {
+                        window.location.href = backendUrl + '/dashboard/login/' + data.token.access;
+                    }, 1000);
                 } else {
-                    $('#buyer-login-error').text(data['errors']['non_field_errors'][0]);
+                    $('#error-text').text(data['errors']['non_field_errors'][0]);
+                    $('#errorDiv').show();
                 }
             }
         )
