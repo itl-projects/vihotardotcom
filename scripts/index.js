@@ -2,7 +2,7 @@ $(window).on('load', function() {
 
     var backendUrl = 'https://api.vihotar.com'
 
-    var accessToken = localStorage.getItem('access_token');
+    var accessToken = Cookies.get('_auth');
     if (accessToken) {
         $('#login-btn').hide();
         $('#signup-btn').hide();
@@ -12,7 +12,7 @@ $(window).on('load', function() {
         });
         $('#logout-btn').on('click', function(e) {
             e.preventDefault();
-            localStorage.removeItem('access_token');
+            Cookies.remove('_auth');
             window.location.href = window.location.href;
         });
     } else{

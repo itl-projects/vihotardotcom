@@ -56,7 +56,7 @@ async function initUserinDb(firstName, lastName, email, avatar, typ) {
         res = await postUrl('users/socialsignin/', data, null, false)
         if (res.data.status === true) {
             setToken(res.data.token.access)
-            window.location.href = `/dashboard/${typ}/`
+            window.location.href = `https://api.vihotar.com/dashboard/login/${getToken()}`
             return { 'status': true, 'data': res.data.data }
         } else {
             showLoginErrors(res.data.errors)

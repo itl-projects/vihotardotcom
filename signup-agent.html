@@ -4,11 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Agent Signup</title>
+    <title>Login - Skyril</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
-    <!-- Price Slider Stylesheets -->
     <!-- Google fonts - Playfair Display-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
     <!-- Google fonts - Poppins-->
@@ -24,9 +23,15 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js "></script>
+    <script src="./assets/legacy/base.js "></script>
+    <script src="./assets/legacy/auth.js "></script>
+    <script>
+        checkLoginState()
+    </script>
 </head>
 
 <body>
@@ -36,9 +41,11 @@
                 <div class="w-100 py-5 px-md-5 px-xl-6 position-relative">
                     <div class="mb-4"><img class="img-fluid mb-4" src="./assets/legacy/logo-square.svg" alt="..." style="max-width: 4rem;">
                         <h2>Agent Sign up</h2>
-                        <p class="text-muted small">Fields marked with asterisks are mandatory.</p>
+                        <p class="text-muted small">Don't want to signup as a agent?.<br>
+                            <a href="signup-seller.html">Sign up as Seller</a> | <a href="signup.html">Sign up as Buyer</a>
+                        </p>
                     </div>
-                    <form class="form-validate" id="agentSignUpForm">
+                    <form class="form-validate" method="post" id="SignUpForm" action="javascript:void(0);">
                         <div class="form-group">
                             <label class="form-label" for="loginFirstname"> First Name*</label>
                             <input class="form-control" name="loginFirstname" id="loginFirstname" type="text" placeholder="First name" autocomplete="off" required data-msg="Please enter your first name">
@@ -69,47 +76,40 @@
                             <label class="form-label" for="loginPassword2"> Confirm your password*</label>
                             <input class="form-control" name="loginPassword2" id="loginPassword2" placeholder="Confirm Password" type="password" required data-msg="Please enter your password">
                         </div>
-                        <div class="alert alert-danger" id="errorDiv" style="display: none;">
-                            <p style="margin-bottom: 0px;" id="error-text"></p>
+                        <div class="alert alert-danger" id="errorDiv" style="display: none">
+                            <ul id="errorList"></ul>
                         </div>
-                        <div class="alert alert-success" id="successDiv" style="display: none;">
-                            <p style="margin-bottom: 0px;">Successful Signup. Please verify your email to login.</p>
-                        </div>
-                        <button id="btnFetch" class="btn btn-lg btn-block btn-primary" type="submit">Sign up</button>
+                        <button id="btnFetch" class="btn btn-lg btn-block btn-primary" onclick="signUp(event)" type="submit">Sign up</button>
                         <hr class="my-3 hr-text letter-spacing-2" data-content="OR">
-                        <button class="btn btn btn-outline-primary btn-block btn-social mb-3" onclick="fbSignin('agent')"><i class="fa-2x fa-facebook-f fab btn-social-icon"> </i>Connect <span class="d-none d-sm-inline">with Facebook</span></button>
-                        <button class="btn btn btn-outline-muted btn-block btn-social mb-3" onclick="googleSignin('agent')"><i class="fa-2x fa-google fab btn-social-icon"> </i>Connect <span class="d-none d-sm-inline">with Google</span></button>
+                        <button class="btn btn btn-outline-primary btn-block btn-social mb-3" onclick="fbSignin('seller')"><i class="fa-2x fa-facebook-f fab btn-social-icon"> </i>Connect <span class="d-none d-sm-inline">with Facebook</span></button>
+                        <button class="btn btn btn-outline-muted btn-block btn-social mb-3" onclick="googleSignin('seller')"><i class="fa-2x fa-google fab btn-social-icon"> </i>Connect <span class="d-none d-sm-inline">with Google</span></button>
                         <hr class="my-4">
                         <p class="text-sm text-muted">By signing up you agree to Directory's <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>.</p>
                     </form>
-                    <a class="close-absolute mr-md-5 mr-xl-6 pt-5" href="index.html">
-                        <svg class="svg-icon w-3rem h-3rem">
-                <use xlink:href="#close-1"> </use>
+                    <a class="close-absolute mr-md-5 mr-xl-6 pt-5 " href="index.html ">
+                        <svg class="svg-icon w-3rem h-3rem ">
+                <use xlink:href="#close-1 "> </use>
               </svg></a>
                 </div>
             </div>
-            <div class="col-md-4 col-lg-6 col-xl-7 d-none d-md-block">
+            <div class="col-md-4 col-lg-6 col-xl-7 d-none d-md-block ">
                 <!-- Image-->
-                <div class="bg-cover h-100 mr-n3" style="background-image: url(./assets/legacy/photo-1497436072909-60f360e1d4b1.jpg);"></div>
+                <div class="bg-cover h-100 mr-n3 "
+                    style="background-image: url(./assets/legacy/photo-1497436072909-60f360e1d4b1.jpg); "></div>
             </div>
         </div>
     </div>
+
     <!-- JavaScript files-->
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
 
     <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
 
     <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js "></script>
-
-    <!-- jQuery-->
-    <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
-
-    <script src="./scripts/signup.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
     <script src="./assets/legacy/socialauth.js "></script>
     <script>
         provider = initFirebase()
@@ -122,6 +122,34 @@
                 setToAuth('socialLoggedIn', false)
             }
         });
+
+        async function signUp(e) {
+            formFields = ['loginFirstname', 'loginLastname', 'loginUsername', 'loginPassword', 'loginCompany',
+                'loginBrand'
+            ]
+            var formElements = document.forms['SignUpForm'].elements
+            data = {
+                'firstName': document.getElementById(formFields[0]).value,
+                'lastName': document.getElementById(formFields[1]).value,
+                'email': document.getElementById(formFields[2]).value,
+                'password': document.getElementById(formFields[3]).value,
+            }
+            if (document.getElementById(formFields[4]).value != '') {
+                data.companyName = document.getElementById(formFields[4]).value
+            }
+            if (document.getElementById(formFields[5]).value != '') {
+                data.brandName = document.getElementById(formFields[5]).value
+            }
+            var loadingText = '<i class="fa fa-spinner fa-spin"></i> loading...';
+            document.getElementById('btnFetch').innerHTML = loadingText;
+            registerUser('seller', data).then(()=>{
+                document.getElementById('btnFetch').innerHTML = 'Sign up';
+            })
+            .catch(err=>{
+                document.getElementById('btnFetch').innerHTML = 'Sign up';
+            })
+            // await registerUser('seller', data)
+        }
     </script>
 </body>
 

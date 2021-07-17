@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login - Skyril</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Google fonts - Playfair Display-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700">
+    <!-- swiper-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.min.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="./assets/legacy/style.default.css" id="theme-stylesheet">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="./assets/legacy/favicon.png">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js "></script>
+    <script src="./assets/legacy/base.js "></script>
+    <script src="./assets/legacy/auth.js "></script>
+    <script>
+        checkLoginState()
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid px-3">
+        <div class="row min-vh-100">
+            <div class="col-md-8 col-lg-6 col-xl-5 d-flex align-items-center">
+                <div class="w-100 py-5 px-md-5 px-xl-6 position-relative">
+                    <div class="mb-3"><img class="img-fluid mb-3" src="./assets/legacy/logo-square.svg" alt="..."
+                            style="max-width: 4rem;">
+                        <h2>Welcome to Skyril!</h2>
+
+                        <p class="text-muted small">Signing in as a agent. Login for another role?<br>
+                            <a href="login.html">Sign in as Buyer</a> | <a href="login-seller.html">Sign in as
+                                Seller</a> | <a href="login-admin.html">Sign in as Admin</a>
+                        </p>
+
+
+                    </div>
+                    <form class="form-validate" method="post" action="javascript:void(0);">
+                        <div class=" form-group ">
+                            <label class="form-label " for="loginUsername "> Email Address</label>
+                            <input class="form-control " name="loginUsername " id="loginUsername" type="email "
+                                placeholder="name@address.com " autocomplete="off " required
+                                data-msg="Please enter your email ">
+                        </div>
+                        <div class="form-group mb-4 ">
+                            <div class="row ">
+                                <div class="col ">
+                                    <label class="form-label " for="loginPassword "> Password</label>
+                                </div>
+                                <div class="col-auto "><a class="form-text small " href="forgotpass.html">Forgot
+                                        password?</a></div>
+                            </div>
+                            <input class="form-control " name="loginPassword " id="loginPassword"
+                                placeholder="Password " type="password" required data-msg="Please enter your password ">
+                        </div>
+
+                        <div class="form-group mb-4 ">
+                            <div class="custom-control custom-checkbox ">
+                                <input class="custom-control-input " id="loginRemember " type="checkbox ">
+                                <label class="custom-control-label text-muted " for="loginRemember "> <span
+                                        class="text-sm ">Remember me for 30 days</span></label>
+                            </div>
+                        </div>
+                        <div class="alert alert-danger" id="errorDiv" style="display: none">
+                            <ul id="errorList"></ul>
+                        </div>
+                        <!-- Submit-->
+                        <button id="btnFetch" class="btn btn-lg btn-block btn-primary "
+                            onclick="login(event, 'agent') ">Sign in</button>
+                        <hr class="my-3 hr-text letter-spacing-2 " data-content="OR ">
+                        <button class="btn btn btn-outline-primary btn-block btn-social mb-3 "
+                            onclick="fbSignin('agent')"><i class="fa-2x fa-facebook-f fab btn-social-icon "> </i>Connect
+                            <span class="d-none d-sm-inline ">with Facebook</span></button>
+                        <button class="btn btn btn-outline-muted btn-block btn-social mb-3 "
+                            onclick="googleSignin('agent')"><i class="fa-2x fa-google fab btn-social-icon "> </i>Connect
+                            <span class="d-none d-sm-inline ">with Google</span></button>
+                        <hr class="my-4 ">
+                        <p class="text-center "><small class="text-muted text-center ">Don't have an account yet? <a
+                                    href="signup.html ">Sign Up </a></small></p>
+                    </form>
+                    <a class="close-absolute mr-md-5 mr-xl-6 pt-5 " href="index.html ">
+                        <svg class="svg-icon w-3rem h-3rem ">
+                            <use xlink:href="#close-1 "> </use>
+                        </svg></a>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-6 col-xl-7 d-none d-md-block ">
+                <!-- Image-->
+                <div class="bg-cover h-100 mr-n3 "
+                    style="background-image: url(./assets/legacy/photo-1497436072909-60f360e1d4b1.jpg); "></div>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript files-->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+    <script src="./assets/legacy/socialauth.js "></script>
+    <script>
+        provider = initFirebase()
+        var user = null
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                setToAuth('socialLoggedIn', true)
+            } else {
+                setToAuth('socialLoggedIn', false)
+            }
+        });
+    </script>
+</body>
+
+</html>
