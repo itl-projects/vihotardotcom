@@ -167,11 +167,11 @@
  }
 
  function setToken(token) {
-     Cookies.set('_auth', token, { 'expires': 7 })
+     Cookies.set('_auth', token, {'expires': 7, 'domain': '.vihotar.com'})
  }
 
  function removeToken() {
-     Cookies.remove('_auth')
+     Cookies.remove('_auth', {'domain': '.vihotar.com'})
  }
 
  async function registerUser(typ, data) {

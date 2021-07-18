@@ -12,7 +12,7 @@ $(window).on('load', function() {
         });
         $('#logout-btn').on('click', function(e) {
             e.preventDefault();
-            Cookies.remove('_auth');
+            Cookies.remove('_auth', {'domain': '.vihotar.com'});
             window.location.href = window.location.href;
         });
     } else{
